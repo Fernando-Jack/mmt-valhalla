@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-accessing-data-neo4j'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://m2.neo4j.org" }
+    maven { url "https://repo.spring.io/libs-release" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile "org.projectlombok:lombok:1.16.10"    
+	compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.data:spring-data-neo4j:4.1.2.RELEASE")
+    compile("org.neo4j:neo4j-ogm-embedded-driver:2.0.4")    	
+	compile("net.logstash.logback:logstash-logback-encoder:4.7")
+	
+	testCompile("junit:junit")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
